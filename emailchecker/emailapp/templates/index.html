@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email checker</title>
+</head>
+<style>
+    .formm {
+        display: flex;
+        flex-direction: row;
+        place-content: center;
+        place-items: center;
+        height: 100vh;
+        margin: 0;
+
+
+    }
+
+    .button {
+        padding: 2px 25px;
+        margin-top: 60px;
+        margin-left: -170px;
+        background-color: #0652DD;
+        border: none;
+        border-radius: 15px;
+        color: white;
+
+    }
+
+    * {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    .buttons {
+        padding: 2px 25px;
+        margin-top: 60px;
+        margin-left: -130px;
+        background-color: #0652DD;
+        border: none;
+        border-radius: 15px;
+        color: white;
+    }
+</style>
+
+<body>
+    {% if emp %}
+    <form class="formm" method="POST" action="add">
+        {% csrf_token %}
+        <label for="">Email: &nbsp </label>
+        <div>{{emp.emal}}</div>
+        <!-- <h4>The </h4> -->
+        <button class="buttons" type='submit'>SUBMIT</button>
+    </form>
+    {% endif %}
+
+    {% if exists %}
+    <div>
+        <h5 class="formm">This Email address is valid and is functional
+            &nbsp&nbsp&nbsp <a href="{% url 'emailapp:index' %}"> <button class="button" href> Back</button></a>
+        </h5>
+
+    </div>
+    {% elif notexists %}
+    <div>
+        <h5 class="formm">This Email address is invalid
+            &nbsp&nbsp&nbsp <a href="{% url 'emailapp:index' %}"> <button class="button" href> Back</button></a>
+        </h5>
+    </div>
+    {% endif %}
+
+
+</body>
+
+</html>
